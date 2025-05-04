@@ -14,6 +14,10 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => console.log('Connected to MongoDB Filaga'));
 
+app.get('/', (req, res) => {
+    res.send('Backend is running');
+});
+
 app.post('/todos', async (req, res) => {
     const todo = new Todo({ text: req.body.text });
     const saved = await todo.save();
